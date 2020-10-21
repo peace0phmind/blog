@@ -6,3 +6,14 @@ publishDir = "docs"
 
 paginate = "10"
 disqusShortname = "peace0phmind"
+
+
+[Author]
+  name = "peace0phmind"
+  bio = "Become a Hmker."
+  avatar = "img/avatar.png"
+
+[Params.logo]
+  image = "img/placeholder.png"
+  title = "peace0phmind"
+  subtitle = "To Be A Hmker"
