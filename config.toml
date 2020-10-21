@@ -1,5 +1,5 @@
-baseURL = "http://www.hmker.com"
+baseURL = "https://peace0phmind.github.io/blog"
 languageCode = "cn-zh"
-title = "成为一个优秀的打字员"
+title = "Be A Hmker"
 theme = "Mainroad"
 publishDir = "docs"
