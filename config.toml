@@ -3,3 +3,6 @@ languageCode = "cn-zh"
 title = "Be A Hmker"
 theme = "Mainroad"
 publishDir = "docs"
+
+paginate = "10"
+disqusShortname = "peace0phmind"
