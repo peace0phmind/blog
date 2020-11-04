@@ -128,6 +128,17 @@ sudo tar -C /usr/local -xzf go1.15.3.linux-arm64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 ```
 
+## 安装curl
+
+curl 支持 http, https, socks4, socks5 代理
+wget 支持 http, https 代理
+
+而socks5支持dns代理，可以解决一些dns污染的问题
+
+```
+sudo apt install curl -y
+```
+
 ## 配置nvcc环境变量
 
 拷贝下面代码到.bashrc或.zshrc文件(如果你安装使用了zsh)，或者.profile或.zprofile文件。

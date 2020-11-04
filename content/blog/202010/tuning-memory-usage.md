@@ -3,8 +3,9 @@ title: "调整内存使用"
 date: 2020-10-29T11:00:47+08:00
 draft: true
 ---
-
 nano分4G版和2G版。其SD镜像分别为：[4G版](https://developer.nvidia.com/jetson-nano-sd-card-image)，[2G版](https://developer.nvidia.com/jetson-nano-2gb-sd-card-image)。
+
+---
 
 4G和2G内存版本的主要区别在于启动后的桌面，2G内存版考虑到内存少的情况，启用的是LXDE的桌面。（切换到level 3后, 4G版镜像比2G版镜像多0.1G，jtop观察前者0.4G,后者0.3G）
 
