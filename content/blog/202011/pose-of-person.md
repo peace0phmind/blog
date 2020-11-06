@@ -33,8 +33,14 @@ sudo python3 setup.py install
 
 ## 安装jetcam
 
-jetcam是一个jetson下操作usb或者csi摄像头的库。
+jetcam是一个jetson下操作usb和csi摄像头的库。
 
+jetcam运行依赖模块traitlets，需先安装traitlets。
+```
+sudo pip3 install traitlets
+```
+
+然后安装jetcam
 ```
 git clone https://github.com/NVIDIA-AI-IOT/jetcam
 cd jetcam
