@@ -37,6 +37,8 @@ sudo python3 setup.py install ## 这步需要编译，时间较长
 
 ## 校验
 
+运行`python3`
+
 ```
 import torch
 print(torch.__version__)
@@ -51,6 +53,17 @@ print('Tensor c = ' + str(c))
 
 import torchvision
 print(torchvision.__version__)
+```
+
+python3交互式控制台会输出类似下面的语句：
+```
+1.7.0
+CUDA available: True
+cuDNN version: 8000
+Tensor a = tensor([0., 0.], device='cuda:0')
+Tensor b = tensor([ 0.3777, -0.5432], device='cuda:0')
+Tensor c = tensor([ 0.3777, -0.5432], device='cuda:0')
+0.8.0a0+45f960c
 ```
 
 

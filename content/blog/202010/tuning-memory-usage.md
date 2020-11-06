@@ -1,7 +1,7 @@
 ---
 title: "调整内存使用"
 date: 2020-10-29T11:00:47+08:00
-draft: true
+draft: false
 ---
 nano分4G版和2G版。其SD镜像分别为：[4G版](https://developer.nvidia.com/jetson-nano-sd-card-image)，[2G版](https://developer.nvidia.com/jetson-nano-2gb-sd-card-image)。
 

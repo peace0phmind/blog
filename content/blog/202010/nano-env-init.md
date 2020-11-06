@@ -1,7 +1,7 @@
 ---
 title: "Jetson Nano环境初始化"
 date: 2020-10-28T15:31:36+08:00
-draft: true
+draft: false
 ---
 
     本文主要介绍Jetson Nano启动后环境的准备工作.
