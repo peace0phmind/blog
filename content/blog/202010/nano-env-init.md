@@ -46,6 +46,18 @@ newgrp docker
 
 此处url也可使用阿里云的个人docker加速器，例如：https://xxxxx.mirror.aliyuncs.com，这里[xxxx参见](https://developer.aliyun.com/article/29941)
 
+添加完后，`daemon.json`文件内容类似如下：
+```
+{
+    "runtimes": {
+        "nvidia": {
+            "path": "nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+    },
+    "registry-mirrors": ["https://7s7m9b11.mirror.aliyuncs.com"]
+}
+```
 
 ## 安装pip3
 
