@@ -13,8 +13,8 @@ Ubuntu 系统的更新 sudo apt update sudo apt upgrade sudo apt dist-upgrade su
 配置docker registry mirrors 配置docker registry mirrors可以进行docker pull加速，解决docker pull缓慢的问题。
 使用编辑器打开/etc/docker/daemon.json文件，按json格式添加如下内容：
 &quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;] 此处url也可使用阿里云的个人docker加速器，例如：https://xxxxx.mirror.aliyuncs.com，这里xxxx参见
-安装pip3 sudo apt install python3-pip -y 安装jtop jtop可以用来显示系统资源使用情况，比如：查看cpu，内存，gpu使用情况；查看安装的库的信息；控制风扇启用和转速等。
-sudo -H pip3 install -U jetson-stats sudo systemctl restart jetson_stats." />
+添加完后，daemon.json文件内容类似如下：
+{ &quot;runtimes&quot;: { &quot;nvidia&quot;: { &quot;path&quot;: &quot;nvidia-container-runtime&quot;, &quot;runtimeArgs&quot;: [] } }, &quot;registry-mirrors&quot;: [&quot;https://7s7m9b11.mirror.aliyuncs.com&quot;] } 安装pip3 sudo apt install python3-pip -y 安装jtop jtop可以用来显示系统资源使用情况，比如：查看cpu，内存，gpu使用情况；查看安装的库的信息；控制风扇启用和转速等。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://peace0phmind.github.io/blog/blog/202010/nano-env-init/" />
 <meta property="article:published_time" content="2020-10-28T15:31:36+08:00" />
@@ -26,11 +26,11 @@ Ubuntu 系统的更新 sudo apt update sudo apt upgrade sudo apt dist-upgrade su
 配置docker registry mirrors 配置docker registry mirrors可以进行docker pull加速，解决docker pull缓慢的问题。
 使用编辑器打开/etc/docker/daemon.json文件，按json格式添加如下内容：
 &quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;] 此处url也可使用阿里云的个人docker加速器，例如：https://xxxxx.mirror.aliyuncs.com，这里xxxx参见
-安装pip3 sudo apt install python3-pip -y 安装jtop jtop可以用来显示系统资源使用情况，比如：查看cpu，内存，gpu使用情况；查看安装的库的信息；控制风扇启用和转速等。
-sudo -H pip3 install -U jetson-stats sudo systemctl restart jetson_stats.">
+添加完后，daemon.json文件内容类似如下：
+{ &quot;runtimes&quot;: { &quot;nvidia&quot;: { &quot;path&quot;: &quot;nvidia-container-runtime&quot;, &quot;runtimeArgs&quot;: [] } }, &quot;registry-mirrors&quot;: [&quot;https://7s7m9b11.mirror.aliyuncs.com&quot;] } 安装pip3 sudo apt install python3-pip -y 安装jtop jtop可以用来显示系统资源使用情况，比如：查看cpu，内存，gpu使用情况；查看安装的库的信息；控制风扇启用和转速等。">
 <meta itemprop="datePublished" content="2020-10-28T15:31:36+08:00" />
 <meta itemprop="dateModified" content="2020-10-28T15:31:36+08:00" />
-<meta itemprop="wordCount" content="208">
+<meta itemprop="wordCount" content="223">
 
 
 
@@ -125,7 +125,17 @@ newgrp docker
 <p>使用编辑器打开<code>/etc/docker/daemon.json</code>文件，按json格式添加如下内容：</p>
 <pre><code>&quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;]
 </code></pre><p>此处url也可使用阿里云的个人docker加速器，例如：https://xxxxx.mirror.aliyuncs.com，这里<a href="https://developer.aliyun.com/article/29941">xxxx参见</a></p>
-<h2 id="安装pip3">安装pip3</h2>
+<p>添加完后，<code>daemon.json</code>文件内容类似如下：</p>
+<pre><code>{
+    &quot;runtimes&quot;: {
+        &quot;nvidia&quot;: {
+            &quot;path&quot;: &quot;nvidia-container-runtime&quot;,
+            &quot;runtimeArgs&quot;: []
+        }
+    },
+    &quot;registry-mirrors&quot;: [&quot;https://7s7m9b11.mirror.aliyuncs.com&quot;]
+}
+</code></pre><h2 id="安装pip3">安装pip3</h2>
 <pre><code>sudo apt install python3-pip -y
 </code></pre><h2 id="安装jtop">安装jtop</h2>
 <p>jtop可以用来显示系统资源使用情况，比如：查看cpu，内存，gpu使用情况；查看安装的库的信息；控制风扇启用和转速等。</p>

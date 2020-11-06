@@ -98,8 +98,8 @@ Ubuntu 系统的更新 sudo apt update sudo apt upgrade sudo apt dist-upgrade su
 配置docker registry mirrors 配置docker registry mirrors可以进行docker pull加速，解决docker pull缓慢的问题。
 使用编辑器打开/etc/docker/daemon.json文件，按json格式添加如下内容：
 &quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;] 此处url也可使用阿里云的个人docker加速器，例如：https://xxxxx.mirror.aliyuncs.com，这里xxxx参见
-安装pip3 sudo apt install python3-pip -y 安装jtop jtop可以用来显示系统资源使用情况，比如：查看cpu，内存，gpu使用情况；查看安装的库的信息；控制风扇启用和转速等。
-sudo -H pip3 install -U jetson-stats sudo systemctl restart jetson_stats.
+添加完后，daemon.json文件内容类似如下：
+{ &quot;runtimes&quot;: { &quot;nvidia&quot;: { &quot;path&quot;: &quot;nvidia-container-runtime&quot;, &quot;runtimeArgs&quot;: [] } }, &quot;registry-mirrors&quot;: [&quot;https://7s7m9b11.mirror.aliyuncs.com&quot;] } 安装pip3 sudo apt install python3-pip -y 安装jtop jtop可以用来显示系统资源使用情况，比如：查看cpu，内存，gpu使用情况；查看安装的库的信息；控制风扇启用和转速等。
 	</div>
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/blog/blog/202010/nano-env-init/">Read more…</a>
