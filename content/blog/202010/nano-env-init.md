@@ -176,3 +176,14 @@ newgrp docker
 sudo apt install docker-compose -y
 ```
 
+## 安装右键resize image工具
+
+```
+sudo apt install nautilus-image-converter
+```
+
+上面命令安装完成后，执行下面命令重启nautilus
+
+```
+nautilus -q
+```
