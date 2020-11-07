@@ -94,12 +94,10 @@ sudo fallocate -l 4G /mnt/4GB.swap sudo mkswap /mnt/4GB.swap sudo swapon /mnt/4G
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		本文主要介绍Jetson Nano启动后环境的准备工作.  TF卡flush以及系统启动初始化 下载并烧录最新的TF卡镜像4G内存版 ; 2G内存版。完成nvidia的一系列初始化操作（协议，时区配置，账号信息配置等）。
-Ubuntu 系统的更新 sudo apt update sudo apt upgrade sudo apt dist-upgrade sudo apt autoremove 配置docker权限  创建 docker 组(可选，nano中已包含docker组) 将当前用户添加到 docker 组中 激活组变化  sudo groupadd docker sudo usermod -aG docker $USER newgrp docker 当激活了组变化后，执行docker ps 可以看到docker命令正确执行。
-配置docker registry mirrors 配置docker registry mirrors可以进行docker pull加速，解决docker pull缓慢的问题。
-使用编辑器打开/etc/docker/daemon.json文件，按json格式添加如下内容：
-&quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;] 此处url也可使用阿里云的个人docker加速器，例如：https://xxxxx.mirror.aliyuncs.com，这里xxxx参见
-添加完后，daemon.json文件内容类似如下：
-{ &quot;runtimes&quot;: { &quot;nvidia&quot;: { &quot;path&quot;: &quot;nvidia-container-runtime&quot;, &quot;runtimeArgs&quot;: [] } }, &quot;registry-mirrors&quot;: [&quot;https://7s7m9b11.mirror.aliyuncs.com&quot;] } 安装pip3 sudo apt install python3-pip -y 安装jtop jtop可以用来显示系统资源使用情况，比如：查看cpu，内存，gpu使用情况；查看安装的库的信息；控制风扇启用和转速等。
+Ubuntu 系统的更新 sudo apt update sudo apt upgrade sudo apt dist-upgrade sudo apt autoremove 安装ohmyzsh 个人比较喜欢ohmyzsh下的一些快捷输入和操作方式。 由于墙的存在，直接安装会失败，可以手动安装
+首先需要安装zsh
+sudo apt install zsh -y 手动安装ohmyzsh
+# Clone the repository git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh # Optionally, backup your existing ~/.zshrc file cp ~/.zshrc ~/.zshrc.orig # Create a new zsh configuration file cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc # Change your default shell chsh -s $(which zsh) 安装ohmyzsh的zsh-autosuggestions插件 zsh-autosuggestions插件支持超棒的历史命令联想功能。
 	</div>
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/blog/blog/202010/nano-env-init/">Read more…</a>

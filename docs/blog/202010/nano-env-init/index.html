@@ -9,12 +9,10 @@
 	<meta name="description" content="">
 		<meta property="og:title" content="Jetson Nano环境初始化" />
 <meta property="og:description" content="本文主要介绍Jetson Nano启动后环境的准备工作.  TF卡flush以及系统启动初始化 下载并烧录最新的TF卡镜像4G内存版 ; 2G内存版。完成nvidia的一系列初始化操作（协议，时区配置，账号信息配置等）。
-Ubuntu 系统的更新 sudo apt update sudo apt upgrade sudo apt dist-upgrade sudo apt autoremove 配置docker权限  创建 docker 组(可选，nano中已包含docker组) 将当前用户添加到 docker 组中 激活组变化  sudo groupadd docker sudo usermod -aG docker $USER newgrp docker 当激活了组变化后，执行docker ps 可以看到docker命令正确执行。
-配置docker registry mirrors 配置docker registry mirrors可以进行docker pull加速，解决docker pull缓慢的问题。
-使用编辑器打开/etc/docker/daemon.json文件，按json格式添加如下内容：
-&quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;] 此处url也可使用阿里云的个人docker加速器，例如：https://xxxxx.mirror.aliyuncs.com，这里xxxx参见
-添加完后，daemon.json文件内容类似如下：
-{ &quot;runtimes&quot;: { &quot;nvidia&quot;: { &quot;path&quot;: &quot;nvidia-container-runtime&quot;, &quot;runtimeArgs&quot;: [] } }, &quot;registry-mirrors&quot;: [&quot;https://7s7m9b11.mirror.aliyuncs.com&quot;] } 安装pip3 sudo apt install python3-pip -y 安装jtop jtop可以用来显示系统资源使用情况，比如：查看cpu，内存，gpu使用情况；查看安装的库的信息；控制风扇启用和转速等。" />
+Ubuntu 系统的更新 sudo apt update sudo apt upgrade sudo apt dist-upgrade sudo apt autoremove 安装ohmyzsh 个人比较喜欢ohmyzsh下的一些快捷输入和操作方式。 由于墙的存在，直接安装会失败，可以手动安装
+首先需要安装zsh
+sudo apt install zsh -y 手动安装ohmyzsh
+# Clone the repository git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh # Optionally, backup your existing ~/.zshrc file cp ~/.zshrc ~/.zshrc.orig # Create a new zsh configuration file cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc # Change your default shell chsh -s $(which zsh) 安装ohmyzsh的zsh-autosuggestions插件 zsh-autosuggestions插件支持超棒的历史命令联想功能。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://peace0phmind.github.io/blog/blog/202010/nano-env-init/" />
 <meta property="article:published_time" content="2020-10-28T15:31:36+08:00" />
@@ -22,15 +20,13 @@ Ubuntu 系统的更新 sudo apt update sudo apt upgrade sudo apt dist-upgrade su
 
 		<meta itemprop="name" content="Jetson Nano环境初始化">
 <meta itemprop="description" content="本文主要介绍Jetson Nano启动后环境的准备工作.  TF卡flush以及系统启动初始化 下载并烧录最新的TF卡镜像4G内存版 ; 2G内存版。完成nvidia的一系列初始化操作（协议，时区配置，账号信息配置等）。
-Ubuntu 系统的更新 sudo apt update sudo apt upgrade sudo apt dist-upgrade sudo apt autoremove 配置docker权限  创建 docker 组(可选，nano中已包含docker组) 将当前用户添加到 docker 组中 激活组变化  sudo groupadd docker sudo usermod -aG docker $USER newgrp docker 当激活了组变化后，执行docker ps 可以看到docker命令正确执行。
-配置docker registry mirrors 配置docker registry mirrors可以进行docker pull加速，解决docker pull缓慢的问题。
-使用编辑器打开/etc/docker/daemon.json文件，按json格式添加如下内容：
-&quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;] 此处url也可使用阿里云的个人docker加速器，例如：https://xxxxx.mirror.aliyuncs.com，这里xxxx参见
-添加完后，daemon.json文件内容类似如下：
-{ &quot;runtimes&quot;: { &quot;nvidia&quot;: { &quot;path&quot;: &quot;nvidia-container-runtime&quot;, &quot;runtimeArgs&quot;: [] } }, &quot;registry-mirrors&quot;: [&quot;https://7s7m9b11.mirror.aliyuncs.com&quot;] } 安装pip3 sudo apt install python3-pip -y 安装jtop jtop可以用来显示系统资源使用情况，比如：查看cpu，内存，gpu使用情况；查看安装的库的信息；控制风扇启用和转速等。">
+Ubuntu 系统的更新 sudo apt update sudo apt upgrade sudo apt dist-upgrade sudo apt autoremove 安装ohmyzsh 个人比较喜欢ohmyzsh下的一些快捷输入和操作方式。 由于墙的存在，直接安装会失败，可以手动安装
+首先需要安装zsh
+sudo apt install zsh -y 手动安装ohmyzsh
+# Clone the repository git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh # Optionally, backup your existing ~/.zshrc file cp ~/.zshrc ~/.zshrc.orig # Create a new zsh configuration file cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc # Change your default shell chsh -s $(which zsh) 安装ohmyzsh的zsh-autosuggestions插件 zsh-autosuggestions插件支持超棒的历史命令联想功能。">
 <meta itemprop="datePublished" content="2020-10-28T15:31:36+08:00" />
 <meta itemprop="dateModified" content="2020-10-28T15:31:36+08:00" />
-<meta itemprop="wordCount" content="223">
+<meta itemprop="wordCount" content="237">
 
 
 
@@ -85,17 +81,19 @@ Ubuntu 系统的更新 sudo apt update sudo apt upgrade sudo apt dist-upgrade su
   <ul>
     <li><a href="#tf卡flush以及系统启动初始化">TF卡flush以及系统启动初始化</a></li>
     <li><a href="#ubuntu-系统的更新">Ubuntu 系统的更新</a></li>
-    <li><a href="#配置docker权限">配置docker权限</a></li>
-    <li><a href="#配置docker-registry-mirrors">配置docker registry mirrors</a></li>
+    <li><a href="#安装ohmyzsh">安装ohmyzsh</a></li>
+    <li><a href="#安装ohmyzsh的zsh-autosuggestions插件">安装ohmyzsh的zsh-autosuggestions插件</a></li>
+    <li><a href="#安装jdk">安装jdk</a></li>
+    <li><a href="#安装terminator">安装terminator</a></li>
     <li><a href="#安装pip3">安装pip3</a></li>
     <li><a href="#安装jtop">安装jtop</a></li>
     <li><a href="#使用jtop启用jetson_clocks">使用jtop启用jetson_clocks</a></li>
-    <li><a href="#安装-docker-compose">安装 docker-compose</a></li>
-    <li><a href="#手动安装ohmyzsh">手动安装ohmyzsh</a></li>
-    <li><a href="#安装ohmyzsh的zsh-autosuggestions插件">安装ohmyzsh的zsh-autosuggestions插件</a></li>
     <li><a href="#安装golang环境">安装golang环境</a></li>
     <li><a href="#安装curl">安装curl</a></li>
     <li><a href="#配置nvcc环境变量">配置nvcc环境变量</a></li>
+    <li><a href="#配置docker权限">配置docker权限</a></li>
+    <li><a href="#配置docker-registry-mirrors">配置docker registry mirrors</a></li>
+    <li><a href="#安装-docker-compose">安装 docker-compose</a></li>
   </ul>
 </nav>
 	</div>
@@ -110,6 +108,68 @@ Ubuntu 系统的更新 sudo apt update sudo apt upgrade sudo apt dist-upgrade su
 sudo apt upgrade
 sudo apt dist-upgrade
 sudo apt autoremove
+</code></pre><h2 id="安装ohmyzsh">安装ohmyzsh</h2>
+<p>个人比较喜欢ohmyzsh下的一些快捷输入和操作方式。
+由于墙的存在，直接安装会失败，可以手动安装</p>
+<p>首先需要安装zsh</p>
+<pre><code>sudo apt install zsh -y
+</code></pre><p>手动安装ohmyzsh</p>
+<pre><code># Clone the repository
+git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+
+# Optionally, backup your existing ~/.zshrc file
+cp ~/.zshrc ~/.zshrc.orig
+
+# Create a new zsh configuration file
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+
+# Change your default shell
+chsh -s $(which zsh)
+</code></pre><h2 id="安装ohmyzsh的zsh-autosuggestions插件">安装ohmyzsh的zsh-autosuggestions插件</h2>
+<p>zsh-autosuggestions插件支持超棒的历史命令联想功能。</p>
+<pre><code># Clone this repository into $ZSH_CUSTOM/plugins (by default ~/.oh-my-zsh/custom/plugins)
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+# Add the plugin to the list of plugins for Oh My Zsh to load (inside ~/.zshrc):
+plugins=(zsh-autosuggestions)
+
+# Start a new terminal session.
+</code></pre><h2 id="安装jdk">安装jdk</h2>
+<pre><code>sudo apt install openjdk-8-jdk -y
+</code></pre><h2 id="安装terminator">安装terminator</h2>
+<p>terminator是ubuntu下比较美观，且支持分屏的工具。其可以类比为mac下的iterm2。</p>
+<pre><code>sudo apt install terminator -y
+</code></pre><h2 id="安装pip3">安装pip3</h2>
+<pre><code>sudo apt install python3-pip -y
+</code></pre><h2 id="安装jtop">安装jtop</h2>
+<p>jtop可以用来显示系统资源使用情况，比如：查看cpu，内存，gpu使用情况；查看安装的库的信息；控制风扇启用和转速等。</p>
+<pre><code>sudo -H pip3 install -U jetson-stats
+sudo systemctl restart jetson_stats.service
+</code></pre><p>使用前还需要logout或者reboot</p>
+<h2 id="使用jtop启用jetson_clocks">使用jtop启用jetson_clocks</h2>
+<p>在不启用jetson_clocks时，jetson的cpu和gpu的主频是根据需要动态变化的，且如果支持PWM的风扇默认也是不工作的（Fan转速为0，如果是普通的3pin风扇则会持续稳定运行。只有4pin的调速风扇会受到jetson_clocks的影响控制转速）。建议启用jetson_clocks，将主频固定下来。在GUI界面，未启用jetson_clocks时会有卡顿的现象。</p>
+<p>输入<code>jtop</code>启动jtop，按<code>5</code>进入控制界面：</p>
+<ol>
+<li>点击<code>system</code>按钮，启用Fan转速的Auto模式</li>
+<li>点击<code>jetson_clocks</code>左边的<code>s</code>按钮，启动jetson_clocks</li>
+<li>点击<code>boot</code>左边的<code>e</code>，设置jetson_clocks系统启动自动运行</li>
+</ol>
+<h2 id="安装golang环境">安装golang环境</h2>
+<p>从<a href="https://golang.org/dl/">golang下载页面</a>下载最新的<a href="https://golang.org/dl/go1.15.3.linux-arm64.tar.gz">go1.15.3.linux-arm64安装包</a></p>
+<p>执行下面命令安装golang到/usr/local目录下:</p>
+<pre><code>sudo tar -C /usr/local -xzf go1.15.3.linux-arm64.tar.gz
+</code></pre><p>将/usr/local/go/bin目录添加到PATH环境变量，参见</p>
+<pre><code>export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
+</code></pre><h2 id="安装curl">安装curl</h2>
+<p>curl 支持 http, https, socks4, socks5 代理
+wget 支持 http, https 代理</p>
+<p>而socks5支持dns代理，可以解决一些dns污染的问题</p>
+<pre><code>sudo apt install curl -y
+</code></pre><h2 id="配置nvcc环境变量">配置nvcc环境变量</h2>
+<p>拷贝下面代码到.bashrc或.zshrc文件(如果你安装使用了zsh)，或者.profile或.zprofile文件。
+关于<a href="https://superuser.com/questions/187639/zsh-not-hitting-profile">.*rc和.*profile文件的使用说明参见</a></p>
+<pre><code>export PATH=/usr/local/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 </code></pre><h2 id="配置docker权限">配置docker权限</h2>
 <ol>
 <li>创建 <code>docker</code> 组(可选，nano中已包含docker组)</li>
@@ -135,64 +195,8 @@ newgrp docker
     },
     &quot;registry-mirrors&quot;: [&quot;https://7s7m9b11.mirror.aliyuncs.com&quot;]
 }
-</code></pre><h2 id="安装pip3">安装pip3</h2>
-<pre><code>sudo apt install python3-pip -y
-</code></pre><h2 id="安装jtop">安装jtop</h2>
-<p>jtop可以用来显示系统资源使用情况，比如：查看cpu，内存，gpu使用情况；查看安装的库的信息；控制风扇启用和转速等。</p>
-<pre><code>sudo -H pip3 install -U jetson-stats
-sudo systemctl restart jetson_stats.service
-</code></pre><p>使用前还需要logout或者reboot</p>
-<h2 id="使用jtop启用jetson_clocks">使用jtop启用jetson_clocks</h2>
-<p>在不启用jetson_clocks时，jetson的cpu和gpu的主频是根据需要动态变化的，且如果支持PWM的风扇默认也是不工作的（Fan转速为0，如果是普通的3pin风扇则会持续稳定运行。只有4pin的调速风扇会受到jetson_clocks的影响控制转速）。建议启用jetson_clocks，将主频固定下来。在GUI界面，未启用jetson_clocks时会有卡顿的现象。</p>
-<p>输入<code>jtop</code>启动jtop，按<code>5</code>进入控制界面：</p>
-<ol>
-<li>点击<code>system</code>按钮，启用Fan转速的Auto模式</li>
-<li>点击<code>jetson_clocks</code>左边的<code>s</code>按钮，启动jetson_clocks</li>
-<li>点击<code>boot</code>左边的<code>e</code>，设置jetson_clocks系统启动自动运行</li>
-</ol>
-<h2 id="安装-docker-compose">安装 docker-compose</h2>
+</code></pre><h2 id="安装-docker-compose">安装 docker-compose</h2>
 <pre><code>sudo apt install docker-compose -y
-</code></pre><h2 id="手动安装ohmyzsh">手动安装ohmyzsh</h2>
-<p>由于墙的存在，直接安装会失败，可以手动安装</p>
-<p>首先需要安装zsh</p>
-<pre><code>sudo apt install zsh -y
-</code></pre><p>手动安装ohmyzsh</p>
-<pre><code># Clone the repository
-git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-
-# Optionally, backup your existing ~/.zshrc file
-cp ~/.zshrc ~/.zshrc.orig
-
-# Create a new zsh configuration file
-cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-
-# Change your default shell
-chsh -s $(which zsh)
-</code></pre><h2 id="安装ohmyzsh的zsh-autosuggestions插件">安装ohmyzsh的zsh-autosuggestions插件</h2>
-<p>zsh-autosuggestions插件支持超棒的历史命令联想功能。</p>
-<pre><code># Clone this repository into $ZSH_CUSTOM/plugins (by default ~/.oh-my-zsh/custom/plugins)
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
-# Add the plugin to the list of plugins for Oh My Zsh to load (inside ~/.zshrc):
-plugins=(zsh-autosuggestions)
-
-# Start a new terminal session.
-</code></pre><h2 id="安装golang环境">安装golang环境</h2>
-<p>从<a href="https://golang.org/dl/">golang下载页面</a>下载最新的<a href="https://golang.org/dl/go1.15.3.linux-arm64.tar.gz">go1.15.3.linux-arm64安装包</a></p>
-<p>执行下面命令安装golang到/usr/local目录下:</p>
-<pre><code>sudo tar -C /usr/local -xzf go1.15.3.linux-arm64.tar.gz
-</code></pre><p>将/usr/local/go/bin目录添加到PATH环境变量，参见</p>
-<pre><code>export PATH=$PATH:/usr/local/go/bin
-</code></pre><h2 id="安装curl">安装curl</h2>
-<p>curl 支持 http, https, socks4, socks5 代理
-wget 支持 http, https 代理</p>
-<p>而socks5支持dns代理，可以解决一些dns污染的问题</p>
-<pre><code>sudo apt install curl -y
-</code></pre><h2 id="配置nvcc环境变量">配置nvcc环境变量</h2>
-<p>拷贝下面代码到.bashrc或.zshrc文件(如果你安装使用了zsh)，或者.profile或.zprofile文件。
-关于<a href="https://superuser.com/questions/187639/zsh-not-hitting-profile">.*rc和.*profile文件的使用说明参见</a></p>
-<pre><code>export PATH=/usr/local/cuda/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 </code></pre>
 		</div>
 	</article>
