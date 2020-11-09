@@ -6,7 +6,18 @@
     <description>Recent content in Blogs on Be A Hmker</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
-    <lastBuildDate>Mon, 02 Nov 2020 16:07:57 +0800</lastBuildDate><atom:link href="https://peace0phmind.github.io/blog/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Nov 2020 15:23:50 +0800</lastBuildDate><atom:link href="https://peace0phmind.github.io/blog/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编译最新opencv 4.4.0 with cuda</title>
+      <link>https://peace0phmind.github.io/blog/blog/202011/build-opencv-with-cuda/</link>
+      <pubDate>Tue, 03 Nov 2020 15:23:50 +0800</pubDate>
+      
+      <guid>https://peace0phmind.github.io/blog/blog/202011/build-opencv-with-cuda/</guid>
+      <description>本文介绍如何在nano/agx上编译opencv 4.4.0 with cuda.
+步骤 该库在原有库基础上做了一些调整，原有库在nano上只能单线程运行。需要原有库的同学参见参考连接。
+# clone the repository git clone https://github.com/peace0phmind/nano_build_opencv.git cd nano_build_opencv ./build_opencv.sh 参考 nano_build_opencv</description>
+    </item>
+    
     <item>
       <title>Ubuntu使用Mac键盘</title>
       <link>https://peace0phmind.github.io/blog/blog/202011/ubuntu-use-mac-keyboard/</link>
