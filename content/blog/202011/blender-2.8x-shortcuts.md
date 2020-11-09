@@ -1,7 +1,7 @@
 ---
 title: "Blender 2.8x快捷键"
 date: 2020-11-02T12:08:35+08:00
-draft: true
+draft: false
 ---
 
 本文主要记录[Blender](https://www.blender.org/)2.8x的快捷方式。

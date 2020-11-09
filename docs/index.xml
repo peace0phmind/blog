@@ -6,7 +6,19 @@
     <description>Recent content on Be A Hmker</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
-    <lastBuildDate>Fri, 30 Oct 2020 17:23:54 +0800</lastBuildDate><atom:link href="https://peace0phmind.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 Nov 2020 12:08:35 +0800</lastBuildDate><atom:link href="https://peace0phmind.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blender 2.8x快捷键</title>
+      <link>https://peace0phmind.github.io/blog/blog/202011/blender-2.8x-shortcuts/</link>
+      <pubDate>Mon, 02 Nov 2020 12:08:35 +0800</pubDate>
+      
+      <guid>https://peace0phmind.github.io/blog/blog/202011/blender-2.8x-shortcuts/</guid>
+      <description>本文主要记录Blender2.8x的快捷方式。
+注：num_做前缀的按钮表示数字键盘区的按键，num_7表示的是数字小键盘7，其他对照类比。普通的按键7会直接用7标识。lmb表示鼠标左键，rmb表示鼠标右键，mmb表示鼠标中键。
+设置单位 blender 2.28默认单位为m,需要设置为mm, Unit Scale需要甚至为0.001.
+通用快捷键  shift-a show add menu shift-s-1 cursor to world origin shift-s-2 cursor to selected shift-s-3 cursor to active shift-s-4 cursor to gride shift-s-6 selection to grid shift-s-7 selection to cursor (keep offset) shift-s-8 selection to cursor shift-s-9 selection to active x-d remove object ctrl-lmb Lasso select: drag the mouse to form a freehand selection area.  视角切换  num_7 Top View ctrl-num_7 Bottom View num_1 Front View ctrl-num_1 Back View num_3 Right View ctrl-num_3 Left View num_0 Camera View num_.</description>
+    </item>
+    
     <item>
       <title>常用命令与工具</title>
       <link>https://peace0phmind.github.io/blog/blog/202010/usage-commands/</link>
