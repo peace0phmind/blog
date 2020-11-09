@@ -89,6 +89,9 @@ HikVision 1T和SamSung 1T的性能相近，价格前者8百不到，后者1200�
 
 1. 完成物理装配后开机
 1. 在Disks工具中找到1T SSD，点击小齿轮，对整个磁盘进行format创建一个大分区（有别于参考中，还要预留16G空间，此处使用完整空间）。完成format后，保持磁盘在unmount状态。
+
+![disks tools](/blog/img/202010/add-nvme-ssd/disks-with-1t-ssd.png)
+
 1. 打开命令行，执行下面命令：（`注： 在我的disks中，我的磁盘名称为/dev/nvme0n1，而不是参考中的/dev/nvme0n1p1，可能与我使用的jetpack 4.4.1有关，所以我修改了代码以保证程序可以运行`）
 
 ```
