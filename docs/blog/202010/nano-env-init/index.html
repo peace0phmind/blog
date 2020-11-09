@@ -26,7 +26,7 @@ sudo apt install zsh -y 手动安装ohmyzsh
 # Clone the repository git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh # Optionally, backup your existing ~/.zshrc file cp ~/.zshrc ~/.zshrc.orig # Create a new zsh configuration file cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc # Change your default shell chsh -s $(which zsh) 安装ohmyzsh的zsh-autosuggestions插件 zsh-autosuggestions插件支持超棒的历史命令联想功能。">
 <meta itemprop="datePublished" content="2020-10-28T15:31:36+08:00" />
 <meta itemprop="dateModified" content="2020-10-28T15:31:36+08:00" />
-<meta itemprop="wordCount" content="237">
+<meta itemprop="wordCount" content="246">
 
 
 
@@ -94,6 +94,7 @@ sudo apt install zsh -y 手动安装ohmyzsh
     <li><a href="#配置docker权限">配置docker权限</a></li>
     <li><a href="#配置docker-registry-mirrors">配置docker registry mirrors</a></li>
     <li><a href="#安装-docker-compose">安装 docker-compose</a></li>
+    <li><a href="#安装右键resize-image工具">安装右键resize image工具</a></li>
   </ul>
 </nav>
 	</div>
@@ -197,6 +198,10 @@ newgrp docker
 }
 </code></pre><h2 id="安装-docker-compose">安装 docker-compose</h2>
 <pre><code>sudo apt install docker-compose -y
+</code></pre><h2 id="安装右键resize-image工具">安装右键resize image工具</h2>
+<pre><code>sudo apt install nautilus-image-converter
+</code></pre><p>上面命令安装完成后，执行下面命令重启nautilus</p>
+<pre><code>nautilus -q
 </code></pre>
 		</div>
 	</article>
@@ -216,9 +221,9 @@ newgrp docker
 
 <nav class="pager flex">
 	<div class="pager__item pager__item--prev">
-		<a class="pager__link" href="/blog/blog/202010/get-and-assemble-agx/" rel="prev">
+		<a class="pager__link" href="/blog/blog/202010/add-nvme-ssd/" rel="prev">
 			<span class="pager__subtitle">«&thinsp;Previous</span>
-			<p class="pager__title">Agx开箱</p>
+			<p class="pager__title">AGX添加nvme ssd并设置从ssd启动</p>
 		</a>
 	</div>
 	<div class="pager__item pager__item--next">

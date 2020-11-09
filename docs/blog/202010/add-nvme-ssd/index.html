@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>AGX添加nvme ssd并设置从ssd启动 - Be A Hmker</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="AGX添加nvme ssd并设置从ssd启动" />
+<meta property="og:description" content="AGX出厂自带32G EMMC，并自带Ubuntu 18.04 &#43; JetPack 4.4。本文对EMMC进行了磁盘读写的测试，并且对AGX进行改装，分别测试加装了海康的1T nvme ssd硬盘和SAMSUNG 1T nvme ssd，并进行了对比测试。最后简单介绍了了如何将AGX的默认启动方式修改为从nvme的ssd启动。
+磁盘读写性能测试方式 使用linux下的dd进行磁盘读写性能测试。
+1.测试磁盘写速度
+sync; dd if=/dev/zero of=tempfile bs=1M count=1024; sync 2.测试磁盘读速度
+dd if=tempfile of=/dev/null bs=1M count=1024 3.清理读缓存
+sudo /sbin/sysctl -w vm.drop_caches=3 emmc性能测试 下图为emmc写盘和覆盖写  emmc写盘1.4 GB/s(实际测试结果输出后，该民令并没有立即结束，所以这里的数据并不能用于参考) emmc覆盖写的速度大概在119 MB/s   下图为emmc缓存读和直接读的速度  emmc缓存读的速度很高，在7.7GB/s左右 emmc直接读取的速度很低，在307 MB/s左右  SamSung 1T SSD性能测试 下图为SamSung写盘和覆盖写  SamSung写盘1.3 GB/s SamSung覆盖写的速度大概在897 MB/s   下图为SamSung缓存读和直接读的速度  SamSung缓存读的速度很高，在7.1GB/s左右 SamSung直接读取的速度很低，在1.7 GB/s左右  HikVision 1T SSD性能测试 下图为HikVision写盘和覆盖写  HikVision写盘1.3 GB/s HikVision覆盖写的速度大概在992 MB/s   下图为HikVision缓存读和直接读的速度  HikVision缓存读的速度很高，在7." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://peace0phmind.github.io/blog/blog/202010/add-nvme-ssd/" />
+<meta property="article:published_time" content="2020-10-22T16:51:33+08:00" />
+<meta property="article:modified_time" content="2020-10-22T16:51:33+08:00" />
+
+		<meta itemprop="name" content="AGX添加nvme ssd并设置从ssd启动">
+<meta itemprop="description" content="AGX出厂自带32G EMMC，并自带Ubuntu 18.04 &#43; JetPack 4.4。本文对EMMC进行了磁盘读写的测试，并且对AGX进行改装，分别测试加装了海康的1T nvme ssd硬盘和SAMSUNG 1T nvme ssd，并进行了对比测试。最后简单介绍了了如何将AGX的默认启动方式修改为从nvme的ssd启动。
+磁盘读写性能测试方式 使用linux下的dd进行磁盘读写性能测试。
+1.测试磁盘写速度
+sync; dd if=/dev/zero of=tempfile bs=1M count=1024; sync 2.测试磁盘读速度
+dd if=tempfile of=/dev/null bs=1M count=1024 3.清理读缓存
+sudo /sbin/sysctl -w vm.drop_caches=3 emmc性能测试 下图为emmc写盘和覆盖写  emmc写盘1.4 GB/s(实际测试结果输出后，该民令并没有立即结束，所以这里的数据并不能用于参考) emmc覆盖写的速度大概在119 MB/s   下图为emmc缓存读和直接读的速度  emmc缓存读的速度很高，在7.7GB/s左右 emmc直接读取的速度很低，在307 MB/s左右  SamSung 1T SSD性能测试 下图为SamSung写盘和覆盖写  SamSung写盘1.3 GB/s SamSung覆盖写的速度大概在897 MB/s   下图为SamSung缓存读和直接读的速度  SamSung缓存读的速度很高，在7.1GB/s左右 SamSung直接读取的速度很低，在1.7 GB/s左右  HikVision 1T SSD性能测试 下图为HikVision写盘和覆盖写  HikVision写盘1.3 GB/s HikVision覆盖写的速度大概在992 MB/s   下图为HikVision缓存读和直接读的速度  HikVision缓存读的速度很高，在7.">
+<meta itemprop="datePublished" content="2020-10-22T16:51:33+08:00" />
+<meta itemprop="dateModified" content="2020-10-22T16:51:33+08:00" />
+<meta itemprop="wordCount" content="145">
+
+
+
+<meta itemprop="keywords" content="" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/blog/css/style.css">
+	<link rel="stylesheet" href="/blog/css/custom.css">
+
+	<link rel="shortcut icon" href="/blog/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo logo--mixed">
+		<a class="logo__link" href="/blog" title="peace0phmind" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/blog/img/placeholder.png">
+				</div><div class="logo__item logo__text">
+					<div class="logo__title">peace0phmind</div>
+					<div class="logo__tagline">To Be A Hmker</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">AGX添加nvme ssd并设置从ssd启动</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">peace0phmind</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-10-22T16:51:33&#43;08:00">2020-10-22</time></div></div>
+		</header>
+<div class="post__toc toc">
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#磁盘读写性能测试方式">磁盘读写性能测试方式</a></li>
+    <li><a href="#emmc性能测试">emmc性能测试</a>
+      <ul>
+        <li><a href="#下图为emmc写盘和覆盖写">下图为emmc写盘和覆盖写</a></li>
+        <li><a href="#下图为emmc缓存读和直接读的速度">下图为emmc缓存读和直接读的速度</a></li>
+      </ul>
+    </li>
+    <li><a href="#samsung-1t-ssd性能测试">SamSung 1T SSD性能测试</a>
+      <ul>
+        <li><a href="#下图为samsung写盘和覆盖写">下图为SamSung写盘和覆盖写</a></li>
+        <li><a href="#下图为samsung缓存读和直接读的速度">下图为SamSung缓存读和直接读的速度</a></li>
+      </ul>
+    </li>
+    <li><a href="#hikvision-1t-ssd性能测试">HikVision 1T SSD性能测试</a>
+      <ul>
+        <li><a href="#下图为hikvision写盘和覆盖写">下图为HikVision写盘和覆盖写</a></li>
+        <li><a href="#下图为hikvision缓存读和直接读的速度">下图为HikVision缓存读和直接读的速度</a></li>
+      </ul>
+    </li>
+    <li><a href="#对比">对比</a></li>
+    <li><a href="#修改启动盘从ssd启动">修改启动盘，从ssd启动</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+	</div>
+</div>
+<div class="content post__content clearfix">
+			<p>AGX出厂自带32G EMMC，并自带Ubuntu 18.04 + JetPack 4.4。本文对EMMC进行了磁盘读写的测试，并且对AGX进行改装，分别测试加装了海康的1T nvme ssd硬盘和SAMSUNG 1T nvme ssd，并进行了对比测试。最后简单介绍了了如何将AGX的默认启动方式修改为从nvme的ssd启动。</p>
+<h2 id="磁盘读写性能测试方式">磁盘读写性能测试方式</h2>
+<p>使用linux下的dd进行磁盘读写性能测试。</p>
+<p>1.测试磁盘写速度</p>
+<pre><code>sync; dd if=/dev/zero of=tempfile bs=1M count=1024; sync
+</code></pre><p>2.测试磁盘读速度</p>
+<pre><code>dd if=tempfile of=/dev/null bs=1M count=1024
+</code></pre><p>3.清理读缓存</p>
+<pre><code>sudo /sbin/sysctl -w vm.drop_caches=3
+</code></pre><h2 id="emmc性能测试">emmc性能测试</h2>
+<h3 id="下图为emmc写盘和覆盖写">下图为emmc写盘和覆盖写</h3>
+<ol>
+<li>emmc写盘1.4 GB/s(实际测试结果输出后，该民令并没有立即结束，所以这里的数据并不能用于参考)</li>
+<li>emmc覆盖写的速度大概在119 MB/s
+<img src="/blog/img/202010/add-nvme-ssd/emmc-write-rewrite.png" alt="emmc写盘和覆盖写"></li>
+</ol>
+<h3 id="下图为emmc缓存读和直接读的速度">下图为emmc缓存读和直接读的速度</h3>
+<ol>
+<li>emmc缓存读的速度很高，在7.7GB/s左右</li>
+<li>emmc直接读取的速度很低，在307 MB/s左右</li>
+</ol>
+<p><img src="/blog/img/202010/add-nvme-ssd/emmc-cacheread-directread.png" alt="emmc缓存读和直接读的速度"></p>
+<h2 id="samsung-1t-ssd性能测试">SamSung 1T SSD性能测试</h2>
+<h3 id="下图为samsung写盘和覆盖写">下图为SamSung写盘和覆盖写</h3>
+<ol>
+<li>SamSung写盘1.3 GB/s</li>
+<li>SamSung覆盖写的速度大概在897 MB/s
+<img src="/blog/img/202010/add-nvme-ssd/samsung-write-rewrite.png" alt="SamSung写盘和覆盖写"></li>
+</ol>
+<h3 id="下图为samsung缓存读和直接读的速度">下图为SamSung缓存读和直接读的速度</h3>
+<ol>
+<li>SamSung缓存读的速度很高，在7.1GB/s左右</li>
+<li>SamSung直接读取的速度很低，在1.7 GB/s左右</li>
+</ol>
+<p><img src="/blog/img/202010/add-nvme-ssd/samsung-cacheread-directread.png" alt="SamSung缓存读和直接读的速度"></p>
+<h2 id="hikvision-1t-ssd性能测试">HikVision 1T SSD性能测试</h2>
+<h3 id="下图为hikvision写盘和覆盖写">下图为HikVision写盘和覆盖写</h3>
+<ol>
+<li>HikVision写盘1.3 GB/s</li>
+<li>HikVision覆盖写的速度大概在992 MB/s
+<img src="/blog/img/202010/add-nvme-ssd/HikVision-write-rewrite.jpg" alt="HikVision写盘和覆盖写"></li>
+</ol>
+<h3 id="下图为hikvision缓存读和直接读的速度">下图为HikVision缓存读和直接读的速度</h3>
+<ol>
+<li>HikVision缓存读的速度很高，在7.9GB/s左右
+1.HikVision直接读取的速度很低，在1.6 GB/s左右</li>
+</ol>
+<p><img src="/blog/img/202010/add-nvme-ssd/HikVision-cacheread-directread.jpg" alt="HikVision缓存读和直接读的速度"></p>
+<h2 id="对比">对比</h2>
+<p>HikVision 1T和SamSung 1T的性能相近，价格前者8百不到，后者1200左右，相差400左右，我先买了HikVision后购买并替换为了SamSung的ssd，下面介绍下原因：</p>
+<p>先看下两个ssd的照片对比，上面为HikVison，下面为SamSung：</p>
+<p>正面对比，差别不大
+<img src="/blog/img/202010/add-nvme-ssd/compare-front.jpg" alt="正面对比"></p>
+<p>背面对比：从背面看SamSung的背面没有元器件，Hikision的有很多细小密集的元器件。
+<img src="/blog/img/202010/add-nvme-ssd/compare-back.jpg" alt="背面对比"></p>
+<p>从HikVision装配图来看,背面有元器件会导致整个ssd中间突起。
+<img src="/blog/img/202010/add-nvme-ssd/HikVision-added.jpg" alt="HikVision装配图"></p>
+<p>替换下来的HikVision，已经有轻微变形了。
+<img src="/blog/img/202010/add-nvme-ssd/HikVision-single.jpg" alt="替换下来的HikVision"></p>
+<p>从SamSung装配图来看,背面没有元器件会非常贴合Agx的PCI-E接口。
+<img src="/blog/img/202010/add-nvme-ssd/samsung-added.jpg" alt="SamSung装配图"></p>
+<h2 id="修改启动盘从ssd启动">修改启动盘，从ssd启动</h2>
+<ol>
+<li>完成物理装配后开机</li>
+<li>在Disks工具中找到1T SSD，点击小齿轮，对整个磁盘进行format创建一个大分区（有别于参考中，还要预留16G空间，此处使用完整空间）。完成format后，保持磁盘在unmount状态。</li>
+<li>打开命令行，执行下面命令：（<code>注： 在我的disks中，我的磁盘名称为/dev/nvme0n1，而不是参考中的/dev/nvme0n1p1，可能与我使用的jetpack 4.4.1有关，所以我修改了代码以保证程序可以运行</code>）</li>
+</ol>
+<pre><code># clone the repository:
+git clone https://github.com/peace0phmind/rootOnNVMe.git
+
+# switch to that repository's directory
+cd rootOnNVMe
+
+# copy the rootfs of the eMMC card to the SSD
+./copy-rootfs-ssd.sh
+
+# Finally, we will add a service which will run a script when the system starts up. 
+./setup-service.sh
+</code></pre><h2 id="参考">参考</h2>
+<p><a href="https://www.jetsonhacks.com/2018/10/18/install-nvme-ssd-on-nvidia-jetson-agx-developer-kit/">Install NVMe SSD on NVIDIA Jetson AGX Developer Kit</a></p>
+<p><a href="https://www.jetsonhacks.com/2020/05/29/jetson-xavier-nx-run-from-ssd/">Jetson Xavier NX – Run from SSD</a></p>
+
+		</div>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="peace0phmind avatar" src="/blog/img/avatar.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name"></span>
+	</div>
+	<div class="authorbox__description">
+		Become a Hmker.
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/blog/blog/202010/get-and-assemble-agx/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">Agx开箱</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/blog/blog/202010/nano-env-init/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">Jetson Nano环境初始化</p>
+		</a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "peace0phmind" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 peace0phmind.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/blog/js/menu.js"></script>
+<script src="/blog/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>
