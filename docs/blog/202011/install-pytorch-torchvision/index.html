@@ -14,16 +14,16 @@ sudo sudo apt-get install python3-pip libopenblas-base libopenmpi-dev pip3 insta
 import torch print(torch.__version__) print(&#39;CUDA available: &#39; &#43; str(torch.cuda.is_available())) print(&#39;cuDNN version: &#39; &#43; str(torch.backends.cudnn.version())) a = torch.cuda.FloatTensor(2).zero_() print(&#39;Tensor a = &#39; &#43; str(a)) b = torch." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://peace0phmind.github.io/blog/blog/202011/install-pytorch-torchvision/" />
-<meta property="article:published_time" content="2020-11-06T18:07:26+08:00" />
-<meta property="article:modified_time" content="2020-11-06T18:07:26+08:00" />
+<meta property="article:published_time" content="2020-11-04T18:07:26+08:00" />
+<meta property="article:modified_time" content="2020-11-04T18:07:26+08:00" />
 
 		<meta itemprop="name" content="安装Pytorch和Torchvision">
 <meta itemprop="description" content="本文简单描述在jetson nano上安装最新的pytorch 1.7.0和torchvision 0.8.1的步骤。
 安装 安装前准备 sudo apt update sudo apt upgrade 安装pytorch 首先下载最新的pytorch版本PyTorch v1.7.0，下载后得到文件torch-1.7.0-cp36-cp36m-linux_aarch64.whl.
 sudo sudo apt-get install python3-pip libopenblas-base libopenmpi-dev pip3 install Cython pip3 install numpy torch-1.7.0-cp36-cp36m-linux_aarch64.whl 安装torchvision sudo apt-get install libjpeg-dev zlib1g-dev git clone --branch v0.8.1 https://github.com/pytorch/vision torchvision cd torchvision export BUILD_VERSION=0.8.1 sudo python3 setup.py install ## 这步需要编译，时间较长 校验 运行python3
 import torch print(torch.__version__) print(&#39;CUDA available: &#39; &#43; str(torch.cuda.is_available())) print(&#39;cuDNN version: &#39; &#43; str(torch.backends.cudnn.version())) a = torch.cuda.FloatTensor(2).zero_() print(&#39;Tensor a = &#39; &#43; str(a)) b = torch.">
-<meta itemprop="datePublished" content="2020-11-06T18:07:26+08:00" />
-<meta itemprop="dateModified" content="2020-11-06T18:07:26+08:00" />
+<meta itemprop="datePublished" content="2020-11-04T18:07:26+08:00" />
+<meta itemprop="dateModified" content="2020-11-04T18:07:26+08:00" />
 <meta itemprop="wordCount" content="131">
 
 
@@ -70,7 +70,7 @@ import torch print(torch.__version__) print(&#39;CUDA available: &#39; &#43; str
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">peace0phmind</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-11-06T18:07:26&#43;08:00">2020-11-06</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-11-04T18:07:26&#43;08:00">2020-11-04</time></div></div>
 		</header>
 <div class="post__toc toc">
 	<div class="toc__title">Page content</div>
@@ -154,6 +154,12 @@ Tensor c = tensor([ 0.3777, -0.5432], device='cuda:0')
 		<a class="pager__link" href="/blog/blog/202011/build-opencv-with-cuda/" rel="prev">
 			<span class="pager__subtitle">«&thinsp;Previous</span>
 			<p class="pager__title">编译最新opencv 4.4.0 with cuda</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/blog/blog/202011/hello-jetson-inference/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">Hello Jetson Inference</p>
 		</a>
 	</div>
 </nav>

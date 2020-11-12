@@ -1,6 +1,6 @@
 ---
 title: "安装Pytorch和Torchvision"
-date: 2020-11-06T18:07:26+08:00
+date: 2020-11-04T18:07:26+08:00
 draft: false
 ---
 

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Hello Jetson Inference - Be A Hmker</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Hello Jetson Inference" />
+<meta property="og:description" content="本文尝试运行Hello AI World,Hello AI World 主要包括：图像分类、物体识别、图像分割。
+Jetson nano安装JetPack 略，参见Jetson Nano环境初始化
+编译项目 更新系统，并安装必要的工具
+sudo apt update sudo apt upgrade sudo apt install git cmake libpython3-dev python3-numpy clone项目并进行编译，中间会提示下载模型，可以直接点击ok，下载默认的几个模型
+git clone --recursive https://github.com/dusty-nv/jetson-inference cd jetson-inference mkdir build cd build cmake ../ make -j$(nproc) sudo make install sudo ldconfig pytorch的安装，参见安装Pytorch和Torchvision
+验证 切换到jetson-inference工程编译目录的bin目录下：
+cd jetson-inference/build/aarch64/bin 图像分类 首次运行命令，TensorRT会花费较长时间进行网络优化，优化后的网络文件会缓存在磁盘上，下次运行直接加载优化后的模型。
+# C&#43;&#43; ./imagenet images/orange_0.jpg images/test/output_0.jpg # Python ./imagenet.py images/orange_0.jpg images/test/output_0.jpg # C&#43;&#43; ./imagenet images/strawberry_0.jpg images/test/output_1.jpg # Python ./imagenet.py images/strawberry_0." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://peace0phmind.github.io/blog/blog/202011/hello-jetson-inference/" />
+<meta property="article:published_time" content="2020-11-05T13:11:47+08:00" />
+<meta property="article:modified_time" content="2020-11-05T13:11:47+08:00" />
+
+		<meta itemprop="name" content="Hello Jetson Inference">
+<meta itemprop="description" content="本文尝试运行Hello AI World,Hello AI World 主要包括：图像分类、物体识别、图像分割。
+Jetson nano安装JetPack 略，参见Jetson Nano环境初始化
+编译项目 更新系统，并安装必要的工具
+sudo apt update sudo apt upgrade sudo apt install git cmake libpython3-dev python3-numpy clone项目并进行编译，中间会提示下载模型，可以直接点击ok，下载默认的几个模型
+git clone --recursive https://github.com/dusty-nv/jetson-inference cd jetson-inference mkdir build cd build cmake ../ make -j$(nproc) sudo make install sudo ldconfig pytorch的安装，参见安装Pytorch和Torchvision
+验证 切换到jetson-inference工程编译目录的bin目录下：
+cd jetson-inference/build/aarch64/bin 图像分类 首次运行命令，TensorRT会花费较长时间进行网络优化，优化后的网络文件会缓存在磁盘上，下次运行直接加载优化后的模型。
+# C&#43;&#43; ./imagenet images/orange_0.jpg images/test/output_0.jpg # Python ./imagenet.py images/orange_0.jpg images/test/output_0.jpg # C&#43;&#43; ./imagenet images/strawberry_0.jpg images/test/output_1.jpg # Python ./imagenet.py images/strawberry_0.">
+<meta itemprop="datePublished" content="2020-11-05T13:11:47+08:00" />
+<meta itemprop="dateModified" content="2020-11-05T13:11:47+08:00" />
+<meta itemprop="wordCount" content="202">
+
+
+
+<meta itemprop="keywords" content="" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/blog/css/style.css">
+	<link rel="stylesheet" href="/blog/css/custom.css">
+
+	<link rel="shortcut icon" href="/blog/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo logo--mixed">
+		<a class="logo__link" href="/blog" title="peace0phmind" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/blog/img/placeholder.png">
+				</div><div class="logo__item logo__text">
+					<div class="logo__title">peace0phmind</div>
+					<div class="logo__tagline">To Be A Hmker</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Hello Jetson Inference</h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">peace0phmind</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-11-05T13:11:47&#43;08:00">2020-11-05</time></div></div>
+		</header>
+<div class="post__toc toc">
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#jetson-nano安装jetpack">Jetson nano安装JetPack</a></li>
+    <li><a href="#编译项目">编译项目</a></li>
+    <li><a href="#验证">验证</a>
+      <ul>
+        <li><a href="#图像分类">图像分类</a></li>
+        <li><a href="#物体识别">物体识别</a></li>
+        <li><a href="#图像分割">图像分割</a></li>
+      </ul>
+    </li>
+    <li><a href="#参见">参见</a></li>
+  </ul>
+</nav>
+	</div>
+</div>
+<div class="content post__content clearfix">
+			<p>本文尝试运行<code>Hello AI World</code>,<code>Hello AI World</code> 主要包括：图像分类、物体识别、图像分割。</p>
+<h2 id="jetson-nano安装jetpack">Jetson nano安装JetPack</h2>
+<p>略，参见<a href="../../202010/nano-env-init">Jetson Nano环境初始化</a></p>
+<h2 id="编译项目">编译项目</h2>
+<p>更新系统，并安装必要的工具</p>
+<pre><code>sudo apt update
+sudo apt upgrade
+sudo apt install git cmake libpython3-dev python3-numpy
+</code></pre><p>clone项目并进行编译，中间会提示下载模型，可以直接点击ok，下载默认的几个模型</p>
+<pre><code>git clone --recursive https://github.com/dusty-nv/jetson-inference
+cd jetson-inference
+mkdir build
+cd build
+cmake ../
+make -j$(nproc)
+sudo make install
+sudo ldconfig
+</code></pre><p>pytorch的安装，参见<a href="../install-pytorch-torchvision">安装Pytorch和Torchvision</a></p>
+<h2 id="验证">验证</h2>
+<p>切换到jetson-inference工程编译目录的bin目录下：</p>
+<pre><code>cd jetson-inference/build/aarch64/bin
+</code></pre><h3 id="图像分类">图像分类</h3>
+<p>首次运行命令，TensorRT会花费较长时间进行网络优化，优化后的网络文件会缓存在磁盘上，下次运行直接加载优化后的模型。</p>
+<pre><code># C++
+./imagenet images/orange_0.jpg images/test/output_0.jpg
+
+# Python
+./imagenet.py images/orange_0.jpg images/test/output_0.jpg
+
+# C++
+./imagenet images/strawberry_0.jpg images/test/output_1.jpg
+
+# Python
+./imagenet.py images/strawberry_0.jpg images/test/output_1.jpg
+</code></pre><p>可以使用<code>--network</code>关键字指定使用什么网络，默认未指定系统默认使用<code>googlenet</code>：</p>
+<pre><code># C++
+./imagenet --network=resnet-18 images/jellyfish.jpg images/test/output_jellyfish.jpg
+
+# Python
+./imagenet.py --network=resnet-18 images/jellyfish.jpg images/test/output_jellyfish.jpg
+
+# C++
+./imagenet --network=resnet-18 images/stingray.jpg images/test/output_stingray.jpg
+
+# Python
+./imagenet.py --network=resnet-18 images/stingray.jpg images/test/output_stingray.jpg
+</code></pre><p>项目支持的完整的模型列表参见：<a href="https://github.com/dusty-nv/jetson-inference/blob/master/docs/imagenet-console-2.md">Classifying Images with ImageNet</a></p>
+<p>检测rtsp流:(这里的admin:123456为摄像头的用户名和密码，请根据实际情况填写用户名、密码和IP地址)</p>
+<pre><code>./imagenet rtsp://admin:123456@192.168.1.26
+</code></pre><h3 id="物体识别">物体识别</h3>
+<p>首次运行命令，TensorRT会花费较长时间进行网络优化，优化后的网络文件会缓存在磁盘上，下次运行直接加载优化后的模型。</p>
+<pre><code># C++
+./detectnet --network=ssd-mobilenet-v2 images/peds_0.jpg images/test/output_peds_0.jpg
+
+# Python
+./detectnet.py --network=ssd-mobilenet-v2 images/peds_0.jpg images/test/output_peds_0.jpg
+
+# C++
+./detectnet images/peds_1.jpg images/test/output_peds_1.jpg
+
+# Python
+./detectnet.py images/peds_1.jpg images/test/output_peds_1.jpg
+</code></pre><p>项目支持的完整的模型列表参见：<a href="https://github.com/dusty-nv/jetson-inference/blob/master/docs/detectnet-console-2.md">Locating Objects with DetectNet</a></p>
+<p>检测rtsp流:(这里的admin:123456为摄像头的用户名和密码，请根据实际情况填写用户名、密码和IP地址)</p>
+<pre><code>./detectnet rtsp://admin:123456@192.168.1.26
+</code></pre><h3 id="图像分割">图像分割</h3>
+<pre><code># C++
+./segnet --network=fcn-resnet18-cityscapes images/city_0.jpg images/test/output_city_0.jpg
+
+# Python
+./segnet.py --network=fcn-resnet18-cityscapes images/city_0.jpg images/test/output_city_0.jpg
+
+# C++
+./segnet --network=fcn-resnet18-deepscene images/trail_0.jpg images/test/output_trail_0.jpg
+
+# C++
+./segnet --network=fcn-resnet18-deepscene --visualize=mask images/trail_0.jpg images/test/output_mask_trail_0.jpg
+
+
+# C++
+./segnet --network=fcn-resnet18-mhp images/humans_0.jpg images/test/output_humans_0.jpg
+
+# Python
+./segnet.py --network=fcn-resnet18-mhp images/humans_0.jpg images/test/output_humans_0.jpg
+</code></pre><p>项目支持的完整的模型列表参见：<a href="https://github.com/dusty-nv/jetson-inference/blob/master/docs/segnet-console-2.md">Semantic Segmentation with SegNet</a></p>
+<p>检测rtsp流:(这里的admin:123456为摄像头的用户名和密码，请根据实际情况填写用户名、密码和IP地址)</p>
+<pre><code>./segnet --network=fcn-resnet18-deepscene rtsp://admin:Zyx123456@192.168.1.26
+</code></pre><h2 id="参见">参见</h2>
+<p><a href="https://github.com/dusty-nv/jetson-inference">Hello AI World</a></p>
+<p><a href="https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo-2.md">Building the Project from Source</a></p>
+<p><a href="https://github.com/dusty-nv/jetson-inference/blob/master/docs/imagenet-console-2.md">Classifying Images with ImageNet</a></p>
+<p><a href="https://github.com/dusty-nv/jetson-inference/blob/master/docs/detectnet-console-2.md">Locating Objects with DetectNet</a></p>
+<p><a href="https://github.com/dusty-nv/jetson-inference/blob/master/docs/segnet-console-2.md">Semantic Segmentation with SegNet</a></p>
+
+		</div>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="peace0phmind avatar" src="/blog/img/avatar.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name"></span>
+	</div>
+	<div class="authorbox__description">
+		Become a Hmker.
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/blog/blog/202011/install-pytorch-torchvision/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">安装Pytorch和Torchvision</p>
+		</a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "peace0phmind" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 peace0phmind.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/blog/js/menu.js"></script>
+<script src="/blog/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>
