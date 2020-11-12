@@ -1,7 +1,7 @@
 ---
 title: "安装Pytorch和Torchvision"
 date: 2020-11-06T18:07:26+08:00
-draft: true
+draft: false
 ---
 
 本文简单描述在jetson nano上安装最新的pytorch 1.7.0和torchvision 0.8.1的步骤。
@@ -31,7 +31,7 @@ pip3 install numpy torch-1.7.0-cp36-cp36m-linux_aarch64.whl
 sudo apt-get install libjpeg-dev zlib1g-dev
 git clone --branch v0.8.1 https://github.com/pytorch/vision torchvision
 cd torchvision
-export BUILD_VERSION=0.8.0
+export BUILD_VERSION=0.8.1
 sudo python3 setup.py install ## 这步需要编译，时间较长
 ```
 

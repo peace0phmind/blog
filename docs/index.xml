@@ -6,7 +6,19 @@
     <description>Recent content on Be A Hmker</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
-    <lastBuildDate>Tue, 03 Nov 2020 15:23:50 +0800</lastBuildDate><atom:link href="https://peace0phmind.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Nov 2020 18:07:26 +0800</lastBuildDate><atom:link href="https://peace0phmind.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>安装Pytorch和Torchvision</title>
+      <link>https://peace0phmind.github.io/blog/blog/202011/install-pytorch-torchvision/</link>
+      <pubDate>Fri, 06 Nov 2020 18:07:26 +0800</pubDate>
+      
+      <guid>https://peace0phmind.github.io/blog/blog/202011/install-pytorch-torchvision/</guid>
+      <description>本文简单描述在jetson nano上安装最新的pytorch 1.7.0和torchvision 0.8.1的步骤。
+安装 安装前准备 sudo apt update sudo apt upgrade 安装pytorch 首先下载最新的pytorch版本PyTorch v1.7.0，下载后得到文件torch-1.7.0-cp36-cp36m-linux_aarch64.whl.
+sudo sudo apt-get install python3-pip libopenblas-base libopenmpi-dev pip3 install Cython pip3 install numpy torch-1.7.0-cp36-cp36m-linux_aarch64.whl 安装torchvision sudo apt-get install libjpeg-dev zlib1g-dev git clone --branch v0.8.1 https://github.com/pytorch/vision torchvision cd torchvision export BUILD_VERSION=0.8.1 sudo python3 setup.py install ## 这步需要编译，时间较长 校验 运行python3
+import torch print(torch.__version__) print(&#39;CUDA available: &#39; + str(torch.cuda.is_available())) print(&#39;cuDNN version: &#39; + str(torch.backends.cudnn.version())) a = torch.cuda.FloatTensor(2).zero_() print(&#39;Tensor a = &#39; + str(a)) b = torch.</description>
+    </item>
+    
     <item>
       <title>编译最新opencv 4.4.0 with cuda</title>
       <link>https://peace0phmind.github.io/blog/blog/202011/build-opencv-with-cuda/</link>

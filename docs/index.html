@@ -12,7 +12,7 @@
 <meta property="og:description" content="peace0phmind&#39;s Personal blog about everything" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://peace0phmind.github.io/blog/" />
-<meta property="og:updated_time" content="2020-11-03T15:23:50+08:00" />
+<meta property="og:updated_time" content="2020-11-06T18:07:26+08:00" />
 
 		<meta itemprop="name" content="Be A Hmker">
 <meta itemprop="description" content="peace0phmind&#39;s Personal blog about everything">
@@ -52,6 +52,28 @@
 			
 <main class="main list" role="main">
 	<article class="list__item post">
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/blog/blog/202011/install-pytorch-torchvision/" rel="bookmark">
+			安装Pytorch和Torchvision
+			</a>
+		</h2>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">peace0phmind</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-11-06T18:07:26&#43;08:00">2020-11-06</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		本文简单描述在jetson nano上安装最新的pytorch 1.7.0和torchvision 0.8.1的步骤。
+安装 安装前准备 sudo apt update sudo apt upgrade 安装pytorch 首先下载最新的pytorch版本PyTorch v1.7.0，下载后得到文件torch-1.7.0-cp36-cp36m-linux_aarch64.whl.
+sudo sudo apt-get install python3-pip libopenblas-base libopenmpi-dev pip3 install Cython pip3 install numpy torch-1.7.0-cp36-cp36m-linux_aarch64.whl 安装torchvision sudo apt-get install libjpeg-dev zlib1g-dev git clone --branch v0.8.1 https://github.com/pytorch/vision torchvision cd torchvision export BUILD_VERSION=0.8.1 sudo python3 setup.py install ## 这步需要编译，时间较长 校验 运行python3
+import torch print(torch.__version__) print('CUDA available: ' + str(torch.cuda.is_available())) print('cuDNN version: ' + str(torch.backends.cudnn.version())) a = torch.cuda.FloatTensor(2).zero_() print('Tensor a = ' + str(a)) b = torch.
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/blog/blog/202011/install-pytorch-torchvision/">Read more…</a>
+	</div>
+</article><article class="list__item post">
 	<header class="list__header">
 		<h2 class="list__title post__title">
 			<a href="/blog/blog/202011/build-opencv-with-cuda/" rel="bookmark">
@@ -264,11 +286,11 @@ sudo /sbin/sysctl -w vm.drop_caches=3 emmc性能测试 下图为emmc写盘和覆
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/install-pytorch-torchvision/">安装Pytorch和Torchvision</a></li>
 			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/build-opencv-with-cuda/">编译最新opencv 4.4.0 with cuda</a></li>
 			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/ubuntu-use-mac-keyboard/">Ubuntu使用Mac键盘</a></li>
 			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/blender-2.8x-shortcuts/">Blender 2.8x快捷键</a></li>
 			<li class="widget__item"><a class="widget__link" href="/blog/blog/202010/usage-commands/">常用命令与工具</a></li>
-			<li class="widget__item"><a class="widget__link" href="/blog/blog/202010/tuning-memory-usage/">调整内存使用</a></li>
 		</ul>
 	</div>
 </div>
