@@ -103,7 +103,8 @@ sudo systemctl set-default multi-user.target 默认启动到图形界面(level 5
 sudo systemctl set-default graphical.target 创建swap文件(可选) 2G版本nano在启动配置时可以选择添加swap，也可以使用jtop工具通过界面配置swap文件的启用和大小。
 此处给出手动创建和启用swap文件的方法： 假设需要创建4GB swap文件：
 sudo fallocate -l 4G /mnt/4GB.swap sudo mkswap /mnt/4GB.swap sudo swapon /mnt/4GB.swap 将下面行添加到/etc/fstab文件中
-/mnt/4GB.swap none swap sw 0 0 </description>
+/mnt/4GB.swap none swap sw 0 0 创建swap分区(可选) 通过disks工具在磁盘上创建一个单独的分区，假设新建分区/dev/sda1
+sudo mkswap /dev/sda1 # get the new partition id: xxx-xxx-xxx sudo blkid /dev/sda1 # write config to file echo &amp;quot;xxx-xxx-xxx none swap sw 0 0&amp;quot; | sudo tee -a /etc/fstab 重新启动操作系统。</description>
     </item>
     
     <item>

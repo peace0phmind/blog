@@ -51,3 +51,22 @@ sudo swapon /mnt/4GB.swap
 ```
 /mnt/4GB.swap  none  swap  sw 0  0
 ```
+
+## 创建swap分区(可选)
+通过disks工具在磁盘上创建一个单独的分区，假设新建分区`/dev/sda1`
+
+```
+sudo mkswap /dev/sda1
+
+# get the new partition id: xxx-xxx-xxx
+sudo blkid /dev/sda1
+
+# write config to file
+echo "xxx-xxx-xxx none swap sw 0 0" | sudo tee -a /etc/fstab
+```
+
+重新启动操作系统。
+
+## 参考
+
+[How to Add a Swap Partition on Jetson TX1](https://jkjung-avt.github.io/swap-on-tx1/)
