@@ -29,3 +29,20 @@ sudo systemd-resolve --flush-caches
 ## 获取不同网络环境下的ping值，DNS解析结果等
 
 [https://www.boce.com](https://www.boce.com)
+
+
+## 图片标记工具Label Image
+
+[labelImg](https://github.com/tzutalin/labelImg)是一款跨平台的图片标记工具。
+
+安装方式：
+```
+# 升级pip3到最新版本
+sudo pip3 install --upgrade pip
+
+# 安装最新的labelImg
+sudo pip3 install labelImg
+```
+
+[安装pyqt5需要升级pip3的原因](https://stackoverflow.com/questions/59711301/install-pyqt5-5-14-1-on-linux/59712128)
+

@@ -6,7 +6,19 @@
     <description>Recent content on Be A Hmker</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
-    <lastBuildDate>Thu, 05 Nov 2020 13:11:47 +0800</lastBuildDate><atom:link href="https://peace0phmind.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Nov 2020 15:13:02 +0800</lastBuildDate><atom:link href="https://peace0phmind.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>列举pip可安装组件的版本信息</title>
+      <link>https://peace0phmind.github.io/blog/blog/202011/pip-list-all-versions-of-package/</link>
+      <pubDate>Fri, 13 Nov 2020 15:13:02 +0800</pubDate>
+      
+      <guid>https://peace0phmind.github.io/blog/blog/202011/pip-list-all-versions-of-package/</guid>
+      <description>方法1 在需要安装组件名称后添加==符号，pip会自动列举可安装版本信息。
+输入：
+pip3 install pyqt5== 得到：
+ Could not find a version that satisfies the requirement pyqt5== (from versions: 5.14.0, 5.14.1, 5.14.2, 5.15.0, 5.15.1) 其他方法参考 Python and pip, list all versions of a package that&amp;rsquo;s available</description>
+    </item>
+    
     <item>
       <title>Hello Jetson Inference</title>
       <link>https://peace0phmind.github.io/blog/blog/202011/hello-jetson-inference/</link>
@@ -83,7 +95,10 @@ import torch print(torch.__version__) print(&#39;CUDA available: &#39; + str(tor
 还有个https://www.sharedrop.io，不过这个网站用的缓存服务器需要代理才可以访问，不是很方便。
 清除DNS缓存 ubuntu操作系统使用如下命令：
 sudo systemd-resolve --flush-caches 参考：How to clear DNS cache
-获取不同网络环境下的ping值，DNS解析结果等 https://www.boce.com</description>
+获取不同网络环境下的ping值，DNS解析结果等 https://www.boce.com
+图片标记工具Label Image labelImg是一款跨平台的图片标记工具。
+安装方式：
+# 升级pip3到最新版本 sudo pip3 install --upgrade pip # 安装最新的labelImg sudo pip3 install labelImg 安装pyqt5需要升级pip3的原因</description>
     </item>
     
     <item>
