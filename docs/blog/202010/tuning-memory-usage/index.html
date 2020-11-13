@@ -42,7 +42,7 @@ sudo fallocate -l 4G /mnt/4GB.swap sudo mkswap /mnt/4GB.swap sudo swapon /mnt/4G
 sudo mkswap /dev/sda1 # get the new partition id: xxx-xxx-xxx sudo blkid /dev/sda1 # write config to file echo &quot;xxx-xxx-xxx none swap sw 0 0&quot; | sudo tee -a /etc/fstab 重新启动操作系统。">
 <meta itemprop="datePublished" content="2020-10-29T11:00:47+08:00" />
 <meta itemprop="dateModified" content="2020-10-29T11:00:47+08:00" />
-<meta itemprop="wordCount" content="97">
+<meta itemprop="wordCount" content="105">
 
 
 
@@ -139,6 +139,7 @@ echo &quot;xxx-xxx-xxx none swap sw 0 0&quot; | sudo tee -a /etc/fstab
 </code></pre><p>重新启动操作系统。</p>
 <h2 id="参考">参考</h2>
 <p><a href="https://jkjung-avt.github.io/swap-on-tx1/">How to Add a Swap Partition on Jetson TX1</a></p>
+<p><a href="https://askubuntu.com/questions/33697/how-do-i-add-swap-after-system-installation">How do I add swap after system installation?</a></p>
 
 		</div>
 	</article>

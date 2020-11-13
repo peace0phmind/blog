@@ -70,3 +70,5 @@ echo "xxx-xxx-xxx none swap sw 0 0" | sudo tee -a /etc/fstab
 ## 参考
 
 [How to Add a Swap Partition on Jetson TX1](https://jkjung-avt.github.io/swap-on-tx1/)
+
+[How do I add swap after system installation?](https://askubuntu.com/questions/33697/how-do-i-add-swap-after-system-installation)
