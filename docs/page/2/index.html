@@ -54,6 +54,30 @@
 	<article class="list__item post">
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/blog/blog/202010/add-nvme-ssd/" rel="bookmark">
+			AGX添加nvme ssd并设置从ssd启动
+			</a>
+		</h2>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">peace0phmind</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-10-22T16:51:33&#43;08:00">2020-10-22</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		AGX出厂自带32G EMMC，并自带Ubuntu 18.04 + JetPack 4.4。本文对EMMC进行了磁盘读写的测试，并且对AGX进行改装，分别测试加装了海康的1T nvme ssd硬盘和SAMSUNG 1T nvme ssd，并进行了对比测试。最后简单介绍了了如何将AGX的默认启动方式修改为从nvme的ssd启动。
+磁盘读写性能测试方式 使用linux下的dd进行磁盘读写性能测试。
+1.测试磁盘写速度
+sync; dd if=/dev/zero of=tempfile bs=1M count=1024; sync 2.测试磁盘读速度
+dd if=tempfile of=/dev/null bs=1M count=1024 3.清理读缓存
+sudo /sbin/sysctl -w vm.drop_caches=3 emmc性能测试 下图为emmc写盘和覆盖写  emmc写盘1.4 GB/s(实际测试结果输出后，该民令并没有立即结束，所以这里的数据并不能用于参考) emmc覆盖写的速度大概在119 MB/s   下图为emmc缓存读和直接读的速度  emmc缓存读的速度很高，在7.7GB/s左右 emmc直接读取的速度很低，在307 MB/s左右  SamSung 1T SSD性能测试 下图为SamSung写盘和覆盖写  SamSung写盘1.3 GB/s SamSung覆盖写的速度大概在897 MB/s   下图为SamSung缓存读和直接读的速度  SamSung缓存读的速度很高，在7.1GB/s左右 SamSung直接读取的速度很低，在1.7 GB/s左右  HikVision 1T SSD性能测试 下图为HikVision写盘和覆盖写  HikVision写盘1.3 GB/s HikVision覆盖写的速度大概在992 MB/s   下图为HikVision缓存读和直接读的速度  HikVision缓存读的速度很高，在7.
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/blog/blog/202010/add-nvme-ssd/">Read more…</a>
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/blog/blog/202010/get-and-assemble-agx/" rel="bookmark">
 			Agx开箱
 			</a>
@@ -113,10 +137,10 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/pip-list-all-versions-of-package/">列举pip可安装组件的版本信息</a></li>
+			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/ai-datasets/">AI库</a></li>
 			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/hello-jetson-inference/">Hello Jetson Inference</a></li>
 			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/install-pytorch-torchvision/">安装Pytorch和Torchvision</a></li>
 			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/build-opencv-with-cuda/">编译最新opencv 4.4.0 with cuda</a></li>
-			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/ubuntu-use-mac-keyboard/">Ubuntu使用Mac键盘</a></li>
 		</ul>
 	</div>
 </div>
