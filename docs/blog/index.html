@@ -11,7 +11,7 @@
 <meta property="og:description" content="peace0phmind&#39;s Personal blog about everything" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://peace0phmind.github.io/blog/blog/" />
-<meta property="og:updated_time" content="2020-11-13T15:13:02+08:00" />
+<meta property="og:updated_time" content="2020-11-18T18:45:20+08:00" />
 
 		<meta itemprop="name" content="Blogs">
 <meta itemprop="description" content="peace0phmind&#39;s Personal blog about everything">
@@ -53,6 +53,28 @@
 	<header class="main__header">
 		<h1 class="main__title">Blogs</h1>
 	</header><article class="list__item post">
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/blog/blog/202011/init-pi4/" rel="bookmark">
+			Raspberry PI4环境初始化
+			</a>
+		</h2>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">peace0phmind</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-11-18T18:45:20&#43;08:00">2020-11-18</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		pi 4准备 安装最新的pi镜像: 2020-08-20-raspios-buster-armhf
+配置apt代理 sudo nano /etc/apt/apt.conf 添加下面语句到文件中：其中如果代理不需要登陆。username:password@可省略；ip和port请按照实际情况填写。
+Acquire::http::Proxy &quot;http://username:password@ip:port&quot;; 更新操作系统到最新 sudo apt update sudo apt upgrade 安装bcmstat bcmstat可以检测到如下指标：
+CPU fequencies (ARM, Core, H264, V3D, ISP) Temperature (current and peak) for Core and/or PMIC IRQ/s Network Rx/Tx System utilisation (percentage user, nice, idle etc.) CPU load (including individual cores when available) GPU mem usage RAM usage (with/without swap) Memory leak detection (D/A options - instantaneous and accumulated memory deltas) Undervoltage, ARM frequency cap and temperature throttle event monitoring Customisable columns
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/blog/blog/202011/init-pi4/">Read more…</a>
+	</div>
+</article><article class="list__item post">
 	<header class="list__header">
 		<h2 class="list__title post__title">
 			<a href="/blog/blog/202011/pip-list-all-versions-of-package/" rel="bookmark">
@@ -251,29 +273,6 @@ sudo mkswap /dev/sda1 # get the new partition id: xxx-xxx-xxx sudo blkid /dev/sd
 	<div class="list__footer clearfix">
 		<a class="list__footer-readmore btn" href="/blog/blog/202010/tuning-memory-usage/">Read more…</a>
 	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/blog/blog/202010/nano-env-init/" rel="bookmark">
-			Jetson Nano环境初始化
-			</a>
-		</h2>
-		<div class="list__meta meta"><div class="meta__item-author meta__item">
-	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">peace0phmind</span>
-</div>
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-10-28T15:31:36&#43;08:00">2020-10-28</time></div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		本文主要介绍Jetson Nano启动后环境的准备工作.  TF卡flush以及系统启动初始化 下载并烧录最新的TF卡镜像4G内存版 ; 2G内存版。完成nvidia的一系列初始化操作（协议，时区配置，账号信息配置等）。
-Ubuntu 系统的更新 sudo apt update sudo apt upgrade sudo apt dist-upgrade sudo apt autoremove 安装ohmyzsh 个人比较喜欢ohmyzsh下的一些快捷输入和操作方式。 由于墙的存在，直接安装会失败，可以手动安装
-首先需要安装zsh
-sudo apt install zsh -y 手动安装ohmyzsh
-# Clone the repository git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh # Optionally, backup your existing ~/.zshrc file cp ~/.zshrc ~/.zshrc.orig # Create a new zsh configuration file cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc # Change your default shell chsh -s $(which zsh) 安装ohmyzsh的zsh-autosuggestions插件 zsh-autosuggestions插件支持超棒的历史命令联想功能。
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore btn" href="/blog/blog/202010/nano-env-init/">Read more…</a>
-	</div>
 </article>
 </main>
 
@@ -297,11 +296,11 @@ sudo apt install zsh -y 手动安装ohmyzsh
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/init-pi4/">Raspberry PI4环境初始化</a></li>
 			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/pip-list-all-versions-of-package/">列举pip可安装组件的版本信息</a></li>
 			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/ai-datasets/">AI库</a></li>
 			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/hello-jetson-inference/">Hello Jetson Inference</a></li>
 			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/install-pytorch-torchvision/">安装Pytorch和Torchvision</a></li>
-			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/build-opencv-with-cuda/">编译最新opencv 4.4.0 with cuda</a></li>
 		</ul>
 	</div>
 </div>

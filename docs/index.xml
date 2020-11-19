@@ -6,7 +6,19 @@
     <description>Recent content on Be A Hmker</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
-    <lastBuildDate>Fri, 13 Nov 2020 15:13:02 +0800</lastBuildDate><atom:link href="https://peace0phmind.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Nov 2020 18:45:20 +0800</lastBuildDate><atom:link href="https://peace0phmind.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Raspberry PI4环境初始化</title>
+      <link>https://peace0phmind.github.io/blog/blog/202011/init-pi4/</link>
+      <pubDate>Wed, 18 Nov 2020 18:45:20 +0800</pubDate>
+      
+      <guid>https://peace0phmind.github.io/blog/blog/202011/init-pi4/</guid>
+      <description>pi 4准备 安装最新的pi镜像: 2020-08-20-raspios-buster-armhf
+配置apt代理 sudo nano /etc/apt/apt.conf 添加下面语句到文件中：其中如果代理不需要登陆。username:password@可省略；ip和port请按照实际情况填写。
+Acquire::http::Proxy &amp;quot;http://username:password@ip:port&amp;quot;; 更新操作系统到最新 sudo apt update sudo apt upgrade 安装bcmstat bcmstat可以检测到如下指标：
+CPU fequencies (ARM, Core, H264, V3D, ISP) Temperature (current and peak) for Core and/or PMIC IRQ/s Network Rx/Tx System utilisation (percentage user, nice, idle etc.) CPU load (including individual cores when available) GPU mem usage RAM usage (with/without swap) Memory leak detection (D/A options - instantaneous and accumulated memory deltas) Undervoltage, ARM frequency cap and temperature throttle event monitoring Customisable columns</description>
+    </item>
+    
     <item>
       <title>列举pip可安装组件的版本信息</title>
       <link>https://peace0phmind.github.io/blog/blog/202011/pip-list-all-versions-of-package/</link>
