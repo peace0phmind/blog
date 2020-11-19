@@ -24,7 +24,7 @@ Acquire::http::Proxy &quot;http://username:password@ip:port&quot;; 更新操作�
 CPU fequencies (ARM, Core, H264, V3D, ISP) Temperature (current and peak) for Core and/or PMIC IRQ/s Network Rx/Tx System utilisation (percentage user, nice, idle etc.) CPU load (including individual cores when available) GPU mem usage RAM usage (with/without swap) Memory leak detection (D/A options - instantaneous and accumulated memory deltas) Undervoltage, ARM frequency cap and temperature throttle event monitoring Customisable columns">
 <meta itemprop="datePublished" content="2020-11-18T18:45:20+08:00" />
 <meta itemprop="dateModified" content="2020-11-18T18:45:20+08:00" />
-<meta itemprop="wordCount" content="98">
+<meta itemprop="wordCount" content="110">
 
 
 
@@ -81,6 +81,7 @@ CPU fequencies (ARM, Core, H264, V3D, ISP) Temperature (current and peak) for Co
     <li><a href="#配置apt代理">配置apt代理</a></li>
     <li><a href="#更新操作系统到最新">更新操作系统到最新</a></li>
     <li><a href="#安装bcmstat">安装bcmstat</a></li>
+    <li><a href="#安装golang">安装golang</a></li>
   </ul>
 </nav>
 	</div>
@@ -115,6 +116,12 @@ chmod +x ~/bin/bcmstat.sh
 <pre><code>export PATH=$PATH:~/bin
 </code></pre><p>添加一个默认配置文件</p>
 <pre><code>echo &quot;xgd10&quot; &gt;&gt; ~/.bcmstat.conf
+</code></pre><h2 id="安装golang">安装golang</h2>
+<p>下载<a href="https://dl.google.com/go/go1.15.5.linux-armv6l.tar.gz">go1.15.5.linux-armv6l</a></p>
+<p>执行下面命令：</p>
+<pre><code>sudo tar -C /usr/local -xzf go1.15.5.linux-armv6l.tar.gz
+</code></pre><p>添加下面语句到.profile中</p>
+<pre><code>export PATH=$PATH:/usr/local/go/bin
 </code></pre>
 		</div>
 	</article>

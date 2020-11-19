@@ -59,3 +59,17 @@ export PATH=$PATH:~/bin
 ```
 echo "xgd10" >> ~/.bcmstat.conf
 ```
+
+## 安装golang
+
+下载[go1.15.5.linux-armv6l](https://dl.google.com/go/go1.15.5.linux-armv6l.tar.gz)
+
+执行下面命令：
+```
+sudo tar -C /usr/local -xzf go1.15.5.linux-armv6l.tar.gz
+```
+
+添加下面语句到.profile中
+```
+export PATH=$PATH:/usr/local/go/bin
+```
