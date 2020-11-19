@@ -12,7 +12,7 @@
 <meta property="og:description" content="peace0phmind&#39;s Personal blog about everything" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://peace0phmind.github.io/blog/" />
-<meta property="og:updated_time" content="2020-11-18T18:45:20+08:00" />
+<meta property="og:updated_time" content="2020-11-19T15:27:31+08:00" />
 
 		<meta itemprop="name" content="Be A Hmker">
 <meta itemprop="description" content="peace0phmind&#39;s Personal blog about everything">
@@ -52,6 +52,37 @@
 			
 <main class="main list" role="main">
 	<article class="list__item post">
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/blog/blog/202010/tuning-memory-usage/" rel="bookmark">
+			调整内存使用
+			</a>
+		</h2>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">peace0phmind</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-10-29T11:00:47&#43;08:00">2020-10-29</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		nano分4G版和2G版。其SD镜像分别为：4G版，2G版。
+ 4G和2G内存版本的主要区别在于启动后的桌面，2G内存版考虑到内存少的情况，启用的是LXDE的桌面。（切换到level 3后, 4G版镜像比2G版镜像多0.1G，jtop观察前者0.4G,后者0.3G）
+禁用桌面GUI 考虑到nano的内存紧缺，如果不是直接在nano上进行GUI开发调试，那么会考虑使用level 3的方式启动nano。禁用桌面可以节省(Unity/GNOME 大概 800MB, LXDE可以节省大概250MB）内存。
+禁用桌面
+sudo init 3 启用桌面
+sudo init 5 如果希望修改系统默认启动行为，则输入如下命令：
+默认启动到控制台界面(level 3)：
+sudo systemctl set-default multi-user.target 默认启动到图形界面(level 5):
+sudo systemctl set-default graphical.target 创建swap文件(可选) 2G版本nano在启动配置时可以选择添加swap，也可以使用jtop工具通过界面配置swap文件的启用和大小。
+此处给出手动创建和启用swap文件的方法： 假设需要创建4GB swap文件：
+sudo fallocate -l 4G /mnt/4GB.swap sudo mkswap /mnt/4GB.swap sudo swapon /mnt/4GB.swap 将下面行添加到/etc/fstab文件中
+/mnt/4GB.swap none swap sw 0 0 创建swap分区(可选) 通过disks工具在磁盘上创建一个单独的分区，假设新建分区/dev/sda1
+sudo mkswap /dev/sda1 # get the new partition id: xxx-xxx-xxx sudo blkid /dev/sda1 # write config to file echo &quot;xxx-xxx-xxx none swap sw 0 0&quot; | sudo tee -a /etc/fstab 重新启动操作系统。
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/blog/blog/202010/tuning-memory-usage/">Read more…</a>
+	</div>
+</article><article class="list__item post">
 	<header class="list__header">
 		<h2 class="list__title post__title">
 			<a href="/blog/blog/202010/nano-env-init/" rel="bookmark">
@@ -159,11 +190,11 @@ sudo /sbin/sysctl -w vm.drop_caches=3 emmc性能测试 下图为emmc写盘和覆
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/build-ffmpeg-under-pi4/">在Pi4上编译ffmpeg支持硬件编解码以及测试和使用方法</a></li>
 			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/init-pi4/">Raspberry PI4环境初始化</a></li>
 			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/pip-list-all-versions-of-package/">列举pip可安装组件的版本信息</a></li>
 			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/ai-datasets/">AI库</a></li>
 			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/hello-jetson-inference/">Hello Jetson Inference</a></li>
-			<li class="widget__item"><a class="widget__link" href="/blog/blog/202011/install-pytorch-torchvision/">安装Pytorch和Torchvision</a></li>
 		</ul>
 	</div>
 </div>
