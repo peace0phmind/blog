@@ -48,7 +48,7 @@ ffmpeg -rtsp_transport tcp -nostdin -loglevel error -i rtsp://username:password@
 
 ## 测试rtsp h.264，1080p硬解，并每5s保存一张图片
 
-首先需要配置GPU内存施用量到300MB，默认76MB，配置路径为：Start->Preferences->Raspberry Pi Configuration->Performance->GPU Memory
+首先需要配置GPU内存到300MB左右，默认76MB，配置路径为：Start->Preferences->Raspberry Pi Configuration->Performance->GPU Memory
 
 ```
 ffmpeg -c:v h264_mmal -rtsp_transport tcp -nostdin -loglevel error -i rtsp://username:password@ip -filter:v fps=fps=1/5 test_%03d.jpg
@@ -56,11 +56,11 @@ ffmpeg -c:v h264_mmal -rtsp_transport tcp -nostdin -loglevel error -i rtsp://use
 
 通过[bcmstat](https://github.com/MilhouseVH/bcmstat)软件观察，cpu消耗一路9%左右，内存消耗也需要60MB，另外需要GPU mem约94MB。
 
-`注`:使用GPU硬解码两路时，cpu上升到28%所有，内存和gpu内存也等比上升。
+`注`:使用GPU硬解码两路时，cpu上升到28%左右，内存和gpu内存也等比上升。
 
 ## 结论
 
-使用pi的gpu加速h264解码时，GPU额外内存消耗较大外，节省的cpu使用率也很少。当然，目前仅进行了ffmpeg的测试，并未通过其他软件来证实是芯片自生问题还是ffmpeg硬件解码算法问题。建议大家使用ffmpeg解码时，仅进行一路硬解。
+使用pi的h264硬件解码时，除GPU额外内存消耗较大外，节省的cpu使用率也很少。当然，目前仅进行了ffmpeg的测试，并未通过其他软件来证实是芯片自生问题还是ffmpeg硬件解码算法问题。建议大家使用ffmpeg解码时，仅进行一路硬解。
 
 ## 参考
 
