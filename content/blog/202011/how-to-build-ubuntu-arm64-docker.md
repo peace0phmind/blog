@@ -16,4 +16,4 @@ Ubuntu的Arm64 Docker Image项目在：
 
 最后，docker下官方提供的arm64的资源在[arm64v8](https://hub.docker.com/u/arm64v8)用户下。
 
-另一个优质的docker arm资源在[balena.io](https://www.balena.io/docs/reference/base-images/base-images-ref/)
+另一个优质的docker arm资源在[balena.io](https://www.balena.io/docs/reference/base-images/base-images-ref/),项目地址在[balena-io-library jetson-xavier](https://github.com/balena-io-library/base-images/tree/master/balena-base-images/device-base/jetson-xavier)
