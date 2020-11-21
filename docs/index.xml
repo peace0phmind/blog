@@ -6,7 +6,19 @@
     <description>Recent content on Be A Hmker</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
-    <lastBuildDate>Thu, 19 Nov 2020 15:27:31 +0800</lastBuildDate><atom:link href="https://peace0phmind.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 21 Nov 2020 17:25:57 +0800</lastBuildDate><atom:link href="https://peace0phmind.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>分析Ubuntu Arm64 Docker Build</title>
+      <link>https://peace0phmind.github.io/blog/blog/202011/how-to-build-ubuntu-arm64-docker/</link>
+      <pubDate>Sat, 21 Nov 2020 17:25:57 +0800</pubDate>
+      
+      <guid>https://peace0phmind.github.io/blog/blog/202011/how-to-build-ubuntu-arm64-docker/</guid>
+      <description>Ubuntu的Arm64 Docker Image项目在： docker-brew-ubuntu-core
+该项目需要配合Jenkins pipe line文件执行。
+文件首先删除docker-brew-ubuntu-core工程的对应arm64分支dist-amd64，并重新创建该分支，在该分支各ubuntu版本下创建Dockerfile，下载构造文件并归档到git仓库。
+具体参考：docker-brew-ubuntu-core</description>
+    </item>
+    
     <item>
       <title>在Pi4上编译ffmpeg支持硬件编解码以及测试和使用方法</title>
       <link>https://peace0phmind.github.io/blog/blog/202011/build-ffmpeg-under-pi4/</link>
