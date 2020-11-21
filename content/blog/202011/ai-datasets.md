@@ -24,3 +24,6 @@ draft: false
 
 [image-net](http://image-net.org/)
 
+## academictorrents
+
+[academictorrents](https://academictorrents.com/)支持对现有开放ai资源库的搜索和基于BitTorrents协议的下载服务的网站。
