@@ -1,3 +1,3 @@
 # blog
 
-https://peace0phmind.github.com/blog  to see the blog website.
+https://peace0phmind.github.io/blog  to see the blog website.
